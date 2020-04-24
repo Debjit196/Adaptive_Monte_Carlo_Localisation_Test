@@ -3,7 +3,6 @@
 	<arg name="map_file" default="$(find my_robot)/maps/map.yaml"/>
 	<node name="map_server" pkg="map_server" type="map_server" args="$(arg map_file)" />
 	  <node name="amcl" pkg="amcl" type="amcl" output="screen">
-	    <!--remap from="scan" to="my_robot/laser/scan"/-->
 	      <!-- Odometry model parameters -->
 	<param name="odom_alpha1" value="0.0005"/>
 	<param name="odom_alpha2" value="0.0010"/>
@@ -19,7 +18,6 @@
   
   </node>
 	 <node name="move_base" pkg="move_base" type="move_base" respawn="false" output="screen">
-	 <remap from="scan" to="my_robot/laser/scan"/>
 	<param name="base_global_planner" value="navfn/NavfnROS" />
   <param name="base_local_planner" value="base_local_planner/TrajectoryPlannerROS"/>
 	 <rosparam file="$(find my_robot)/config/costmap_common_params.yaml" command="load" ns="global_costmap" />
